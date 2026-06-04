@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WTF Podcast Q&A Bot — Elon Musk & Nikhil Kamath</title>
+    <meta name="description" content="An interactive AI Q&A bot trained on the Elon Musk & Nikhil Kamath WTF Podcast episode. Get precise answers and jump to exact video timestamps.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./src/styles.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="glass-bg"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-area">
+                <span class="logo-badge">Option 3</span>
+                <h1>Sportomic AI Lab</h1>
+            </div>
+            <p class="subtitle">Podcast Q&A Bot — Elon Musk × Nikhil Kamath | People by WTF Ep. 16</p>
+            <!-- API Key is configured internally within the code -->
+        </header>
+
+        <!-- Main Layout Grid -->
+        <main class="main-grid">
+            
+            <!-- Left Panel: Q&A Engine -->
+            <section class="panel qa-panel">
+                <div class="panel-header">
+                    <h2><i class="fa-solid fa-brain text-accent"></i> Ask the Podcast</h2>
+                    <p class="panel-desc">Ask anything about AI, robots, simulation theory, work, or SpaceX discussed in the episode.</p>
+                </div>
+
+                <!-- Search / Question Box -->
+                <form id="search-form" class="search-box">
+                    <input type="text" id="query-input" placeholder="e.g., What is first-principles thinking?" required autocomplete="off">
+                    <button type="submit" id="search-submit-btn" class="btn btn-primary">
+                        <span class="btn-text">Ask AI</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+
+                <!-- Quick Prompts / Suggestions -->
+                <div class="suggestions-container">
+                    <span class="suggestion-label">Suggested Questions:</span>
+                    <div class="suggestions-list">
+                        <button class="suggestion-tag">What is first-principles thinking?</button>
+                        <button class="suggestion-tag">What is Universal High Income?</button>
+                        <button class="suggestion-tag">What does he say about simulation theory?</button>
+                        <button class="suggestion-tag">Will work become optional in the future?</button>
+                    </div>
+                </div>
+
+                <!-- Response Board -->
+                <div id="response-board" class="response-board hidden">
+                    <div class="answer-section">
+                        <h3><i class="fa-solid fa-robot"></i> Answer</h3>
+                        <div id="answer-text" class="answer-text">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                    </div>
+
+                    <div class="sources-section">
+                        <h3><i class="fa-solid fa-circle-play"></i> Discussion Moments <span class="badge-count" id="source-count">0</span></h3>
+                        <p class="sources-desc">Click a card below to jump the YouTube player to that exact conversation segment.</p>
+                        <div id="sources-container" class="sources-container">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="loader" class="loader hidden">
+                    <div class="loading-spinner"></div>
+                    <p id="loader-text">Analyzing transcript chunks...</p>
+                </div>
+
+                <!-- Welcome State -->
+                <div id="welcome-state" class="welcome-state">
+                    <i class="fa-solid fa-microphone-lines welcome-icon"></i>
+                    <h3>Ready to Search</h3>
+                    <p>Enter a query above to semantically search the 2-hour podcast transcript. The AI will answer your query using direct transcript context and guide you to the exact timestamps.</p>
+                </div>
+            </section>
+
+            <!-- Right Panel: Video Player -->
+            <section class="panel player-panel">
+                <div class="panel-header">
+                    <h2><i class="fa-solid fa-tv text-accent"></i> Video Player</h2>
+                    <p class="panel-desc">Watch the video synchronize with the Q&A search results below.</p>
+                </div>
+
+                <!-- Embedded Player Container -->
+                <div class="player-wrapper">
+                    <div id="yt-player"></div>
+                </div>
+
+                <!-- Current State Control / Info -->
+                <div class="player-controls">
+                    <div class="playback-status">
+                        <span class="status-indicator active" id="player-indicator"></span>
+                        <span id="player-status-text">Video Player Loaded</span>
+                    </div>
+                    <div class="player-details">
+                        <span id="current-timestamp">00:00</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Settings Modal Removed: API key integrated in app.js -->
+
+    <!-- Script loading YouTube IFrame Player API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <!-- Main JS Application -->
+    <script src="./src/app.js" type="module"></script>
+</body>
+</html>
